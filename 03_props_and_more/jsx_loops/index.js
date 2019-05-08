@@ -4,7 +4,7 @@ class App extends React.Component {
 			<div>
 				<Friend 
 					name="Elton"
-					hobbies={['piano', 'acting', 'math']}
+					hobbies={['piano', 'acting', 'math', 'learning', 'singing']}
 				/>
 			</div>
 		)

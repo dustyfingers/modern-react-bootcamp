@@ -1,12 +1,12 @@
 class Machine extends React.Component {
     render() {
-		const {symbol1, symbol2, symbol3} = this.props;
-		const winner = (symbol1 === symbol2) && (symbol2 === symbol3);
+		const {s1, s2, s3} = this.props;
+		const isWinner = (s1 === s2) && (s2 === s3);
 		return (
 			<div>
-				<p>{symbol1} | {symbol2} | {symbol3}</p>
-				<p>{winner ? 'Winner!' : 'Loser!'}</p>
+				<p>{s1} | {s2} | {s3}</p>
+				<p>{isWinner ? 'Winner!' : 'Loser...'}</p>
 			</div>
 		)
-	}        
+    }
 }

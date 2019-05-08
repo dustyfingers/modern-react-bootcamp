@@ -3,7 +3,7 @@ class App extends React.Component {
 		return (
 			<div>
 				<Hello 
-					to={':eggplant:'} 
+					to={'Ringo'} 
 					from="Paul" 
 					numBangs={4}
 				/>
