@@ -1,0 +1,14 @@
+.Machine {
+    border: 1px dashed lightslategrey;
+    width: 25%;
+    margin-bottom: 2rem;
+    margin-left: 1rem;
+}
+
+.winner {
+    color: limegreen;
+}
+
+.loser {
+    color: darkred;
+}
