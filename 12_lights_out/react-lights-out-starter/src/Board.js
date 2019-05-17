@@ -33,7 +33,7 @@ class Board extends Component {
   static defaultProps = {
     nrows: 5,
     ncols: 5,
-    chanceLightStartsOn: 0.37
+    chanceLightStartsOn: 0.25
   };
   constructor(props) {
     super(props);
@@ -63,6 +63,7 @@ class Board extends Component {
   /** handle changing a cell: update board & determine if winner */
 
   flipCellsAround(coord) {
+    console.log('Flipping!', coord);
     let {ncols, nrows} = this.props;
     let board = this.state.board;
     let [y, x] = coord.split("-").map(Number);
@@ -77,11 +78,16 @@ class Board extends Component {
     }
 
     // TODO: flip this cell and the cells around it
-
+    flipCell(y, x);
+    flipCell(y, x - 1);
+    flipCell(y, x + 1);
+    flipCell(y - 1, x);
+    flipCell(y + 1, x);
     // win when every cell is turned off
     // TODO: determine is the game has been won
-
-    // this.setState({board, hasWon});
+    let hasWon = board.every(row => row.every(cell => !cell));
+    console.log(hasWon);
+    this.setState({board: board, hasWon: hasWon});
   }
 
 
@@ -90,6 +96,16 @@ class Board extends Component {
   render() {
 
     // if the game is won, just show a winning msg & render nothing else
+    if (this.state.hasWon) {
+      return (
+        <div className="Board-title">
+          <div className="winner">
+            <span className="neon-orange">YOU</span>
+            <span className="neon-blue">WIN!</span>
+          </div>
+        </div>
+      )
+    }
 
     // TODO
 
@@ -107,11 +123,18 @@ class Board extends Component {
       tblBoard.push(<tr key={y}>{row}</tr>);
     }
     return (
-      <table className="Board">
-        <tbody>
-          {tblBoard}
-        </tbody>
-      </table>
+      <div>
+        <div className="Board-title">
+          <div className="neon-orange">LIGHTS</div>
+          <div className="neon-blue">OUT</div>
+        </div>
+        <table className="Board">
+          <tbody>
+            {tblBoard}
+          </tbody>
+        </table>
+      </div>
+
     )
   }
 }
