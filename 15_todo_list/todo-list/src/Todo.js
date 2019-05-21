@@ -60,10 +60,10 @@ class Todo extends Component {
           >{this.props.task}</li>
         <div className='Todo-buttons'>
             <button onClick={this.toggleForm}>
-              <i class='fas fa-pen' />
+              <i className='fas fa-pen' />
             </button>
             <button onClick={this.handleRemove}>
-              <i class='fas fa-trash' />
+              <i className='fas fa-trash' />
             </button>
           </div>
         </div>
