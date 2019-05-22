@@ -13,8 +13,9 @@
   cursor: pointer;
   opacity: 0.8;
 }
+
 .Die-rolling {
-  animation: spin 1s ease-out;
+  animation: spin 1s ease-in-out;
 }
 
 .Die-rolling:hover,
