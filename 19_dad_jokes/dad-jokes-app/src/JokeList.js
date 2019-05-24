@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import './JokeList.css';
 
 
 class JokeList extends Component {
@@ -24,7 +25,12 @@ class JokeList extends Component {
   render() {
     return (
       <div className='JokeList'>
-        <h1>Dad Jokes</h1>
+        <div className='JokeList-sidebar'>
+            <h1 className='JokeList-title'>Dad Jokes</h1>
+            <img src='https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/198/face-with-tears-of-joy_1f602.png' alt='emoji'/>
+            <button className='JokeList-getmore'>New Jokes</button>
+        </div>
+
         <div className='JokeList-jokes'>
           {this.state.jokes.map(j => {
             return <div>{j}</div>;
