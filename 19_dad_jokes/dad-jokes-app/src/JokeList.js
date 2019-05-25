@@ -11,8 +11,12 @@ class JokeList extends Component {
   }
   constructor(props) {
     super(props);
-    this.state = { jokes: JSON.parse(window.localStorage.getItem('jokes') || '[]') };
+    this.state = {
+      jokes: JSON.parse(window.localStorage.getItem('jokes') || '[]'),
+      loading: false
+    };
     this.handleVote = this.handleVote.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
   componentDidMount() {
     if (this.state.jokes.length === 0) this.getJokes();
@@ -25,23 +29,40 @@ class JokeList extends Component {
       });
       jokes.push({ id: uuid(), text: res.data.joke, votes: 0 });
     }
-    this.setState({ jokes: jokes });
-    window.localStorage.setItem('jokes', JSON.stringify(jokes));
+    this.setState(st => ({
+      jokes: [...st.jokes, ...jokes],
+      loading: false
+    }),
+    () => window.localStorage.setItem('jokes', JSON.stringify(this.state.jokes))
+  );
   }
   handleVote(id, delta) {
     this.setState(
       st => ({
         jokes: st.jokes.map(j => j.id === id ? {...j, votes: j.votes + delta} : j)
-      })
+      }),
+      () => window.localStorage.setItem('jokes', JSON.stringify(this.state.jokes))
     );
   }
+  handleClick() {
+    this.setState({ loading: true }, this.getJokes);
+
+  }
   render() {
+    if (this.state.loading) {
+      return (
+        <div className='JokeList-spinner'>
+          <i className='far fa-8x fa-laugh fa-spin'/>
+          <h1 className='JokeList-title'>Loading...</h1>
+        </div>
+      )
+    }
     return (
       <div className='JokeList'>
         <div className='JokeList-sidebar'>
             <h1 className='JokeList-title'>Dad Jokes</h1>
             <img src='https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/198/face-with-tears-of-joy_1f602.png' alt='emoji'/>
-            <button className='JokeList-getmore'>New Jokes</button>
+            <button className='JokeList-getmore' onClick={this.handleClick}>New Jokes</button>
         </div>
 
         <div className='JokeList-jokes'>
