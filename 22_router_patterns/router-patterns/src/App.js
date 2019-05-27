@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Food from './Food';
+import FoodSearch from './FoodSearch';
 import Meal from './Meal';
 import './App.css';
 
@@ -22,7 +23,7 @@ class App extends Component {
         <Route 
           exact 
           path='/' 
-          render={ routeProps => <h1>Home Page</h1> } 
+          render={ routeProps => <FoodSearch /> } 
         />
         <Route 
           render={ () => <h1>ERROR 404 FILE NOT FOUND</h1> } 
