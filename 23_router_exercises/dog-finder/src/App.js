@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import DogList from './DogList';
 import DogDetails from './DogDetails';
+import Navbar from './Navbar';
 import './App.css';
 
 class App extends Component {
@@ -49,6 +50,7 @@ class App extends Component {
     };
     return (
       <div className="App">
+        <Navbar dogs={this.props.dogs}/>
         <Switch>
           <Route exact path='/dogs' render={ () => <DogList dogs={this.props.dogs} /> } />
           <Route exact path='/dogs/:name' render={getDog} />
