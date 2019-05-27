@@ -23,7 +23,7 @@ class App extends Component {
         <Route 
           exact 
           path='/' 
-          render={ routeProps => <FoodSearch /> } 
+          render={ routeProps => <FoodSearch { ...routeProps } /> } 
         />
         <Route 
           render={ () => <h1>ERROR 404 FILE NOT FOUND</h1> } 
