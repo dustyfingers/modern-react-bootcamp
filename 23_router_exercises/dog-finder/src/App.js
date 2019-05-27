@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import DogList from './DogList';
+import DogDetails from './DogDetails';
 import './App.css';
 
 class App extends Component {
@@ -9,6 +10,7 @@ class App extends Component {
       {
         name: 'Peanut',
         age: 2,
+        src: 'https://source.unsplash.com/800x800/?dog',
         facts: [
           'Loves the park!',
           'Loves his mama!',
@@ -18,6 +20,7 @@ class App extends Component {
       {
         name: 'Keeva',
         age: 5,
+        src: 'https://source.unsplash.com/800x800/?dog',
         facts: [
           'Loves to snuggle!',
           'Loves her papa!',
@@ -27,6 +30,7 @@ class App extends Component {
       {
         name: 'Lissa',
         age: 4,
+        src: 'https://source.unsplash.com/800x800/?dog',
         facts: [
           'Loves to snuggle!',
           'Loves her papa!',
@@ -36,9 +40,19 @@ class App extends Component {
     ]
   };
   render() {
+    const getDog = props => {
+      let name = props.match.params.name;
+      let currentDog = this.props.dogs.find(
+        dog => dog.name.toLowerCase() === name.toLowerCase()
+      );
+      return <DogDetails {...props} dog={currentDog} />
+    };
     return (
       <div className="App">
-        <Route path='/dogs' render={ () => <DogList dogs={this.props.dogs} /> } />
+        <Switch>
+          <Route exact path='/dogs' render={ () => <DogList dogs={this.props.dogs} /> } />
+          <Route exact path='/dogs/:name' render={getDog} />
+        </Switch>
       </div>
     );
   }

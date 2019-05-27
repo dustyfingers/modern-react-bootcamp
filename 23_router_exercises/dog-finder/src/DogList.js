@@ -19,7 +19,6 @@ class DogList extends Component {
                                 <img src='https://source.unsplash.com/800x800/?dog' alt={dog.name} />
                             </div>
                         ))}
-                        
                     </div>
                 </div>
             </div>
