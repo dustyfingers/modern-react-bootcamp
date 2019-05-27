@@ -3,12 +3,14 @@ import { Route, Switch } from 'react-router-dom';
 import Food from './Food';
 import FoodSearch from './FoodSearch';
 import Meal from './Meal';
+import Navbar from './Navbar';
 import './App.css';
 
 class App extends Component {
   render() {
     return (
-      <div className="App"> 
+      <div className="App">
+      <Navbar />
       <Switch>
         <Route 
           exact 
