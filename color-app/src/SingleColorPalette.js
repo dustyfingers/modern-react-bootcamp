@@ -41,7 +41,6 @@ class SingleColorPalette extends Component {
                     handleChange={this.changeFormat}
                     showingAllColors={false}
                 />
-                <h1>Single Color Palette</h1>
                 <div className='Palette-colors'>
                     {colorBoxes}
                 </div>
