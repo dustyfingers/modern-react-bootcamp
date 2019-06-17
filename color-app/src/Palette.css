@@ -6,13 +6,12 @@
 }
 
 .Palette-colors {
-	height: 90%;
+	height: 80vh;
 }
 
 /* footer styles */
 .Palette-footer {
 	background-color: white;
-	height: 4vh;
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
