@@ -14,7 +14,7 @@ class SingleColorPalette extends Component {
         // return all shades of a given color
         let shades = [];
         let allColors = palette.colors;
-        for(let key in allColors) {
+        for (let key in allColors) {
             shades = shades.concat(
                 allColors[key].filter(color => color.id === colorToFilterBy)
             )
@@ -22,22 +22,22 @@ class SingleColorPalette extends Component {
         return shades.slice(1);
     }
     changeFormat(val) {
-		this.setState({ format: val });
-	}
+        this.setState({ format: val });
+    }
     render() {
         const { format } = this.state;
         const { paletteName, emoji, id } = this.props.palette;
         const colorBoxes = this._shades.map(color => (
-            <ColorBox 
+            <ColorBox
                 key={color.name}
                 name={color.name}
                 background={color[format]}
-                showLink={false}
+                showingFullPalette={false}
             />
         ));
         return (
             <div className='SingleColorPalette Palette'>
-                <Navbar 
+                <Navbar
                     handleChange={this.changeFormat}
                     showingAllColors={false}
                 />
@@ -47,13 +47,13 @@ class SingleColorPalette extends Component {
                         <Link to={`/palette/${id}`} className="back-button">Go Back</Link>
                     </div>
                 </div>
-                <PaletteFooter 
+                <PaletteFooter
                     paletteName={paletteName}
                     emoji={emoji}
                 />
             </div>
         );
-    }    
+    }
 }
 
 export default SingleColorPalette;
