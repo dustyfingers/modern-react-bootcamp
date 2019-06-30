@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PaletteMetaForm from './PaletteMetaForm';
 import { withStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
@@ -64,8 +65,7 @@ class PaletteFormNav extends Component {
     }
 
     render() {
-        const { classes, open } = this.props;
-        const { newPaletteName } = this.state;
+        const { classes, open, palettes, handleSubmit } = this.props;
         return (
             <div className='root'>
                 <CssBaseline />
@@ -90,21 +90,7 @@ class PaletteFormNav extends Component {
                         </Typography>
                     </Toolbar>
                     <div className={classes.navBtns}>
-                        <ValidatorForm onSubmit={() => this.props.handleSubmit(newPaletteName)}>
-                            <TextValidator
-                                label='Palette Name'
-                                name='newPaletteName'
-                                value={this.state.newPaletteName}
-                                onChange={this.handleChange}
-                                validators={['required', 'isPaletteNameUnique']}
-                                errorMessages={['Enter palette name.', 'That palette name is already taken.']} />
-                            <Button
-                                variant='contained'
-                                color='primary'
-                                type='submit'>
-                                Save Palette
-                            </Button>
-                        </ValidatorForm>
+                        <PaletteMetaForm palettes={palettes} handleSubmit={handleSubmit} />
                         <Link to='/'>
                             <Button variant='contained' color='secondary'>GO BACK</Button>
                         </Link>
