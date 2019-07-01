@@ -1,17 +1,31 @@
+import sizes from './sizes';
+import bg from './bg.svg';
+
 export default {
     root: {
-        backgroundColor: 'blue',
+        backgroundColor: '#1911aa',
+        backgroundImage: `url(${bg})`,
         height: '100vh',
         display: 'flex',
         alignItems: 'flex-start',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        overflow: 'scroll'
+    },
+    heading: {
+        fontSize: '2rem'
     },
     container: {
-        width: '50%',
+        width: '65%',
         display: 'flex',
         alignItems: 'flex-start',
         flexDirection: 'column',
-        flexWrap: 'wrap'
+        flexWrap: 'wrap',
+        [sizes.down('lg')]: {
+            width: '80%'
+        },
+        [sizes.down('xs')]: {
+            width: '75%'
+        }
     },
     nav: {
         display: 'flex',
@@ -30,6 +44,13 @@ export default {
         width: '100%',
         display: 'grid',
         gridTemplateColumns: 'repeat(3, 30%)',
-        gridGap: '5%'
+        gridGap: '2.5rem',
+        [sizes.down('md')]: {
+            gridTemplateColumns: 'repeat(2, 50%)'
+        },
+        [sizes.down('xs')]: {
+            gridTemplateColumns: 'repeat(1, 100%)',
+            gridGap: '1.4rem',
+        }
     }
 };
