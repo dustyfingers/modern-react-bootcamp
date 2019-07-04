@@ -1,11 +1,11 @@
 import { useState } from 'react';
 
-function useToggle(initialVal = false) {
-    // call useState, 'reserve piece of state'
-    const [state, setState] = useState(initialVal);
+function useToggle(initialValue = false) {
+    const [state, setState] = useState(initialValue);
     const toggle = () => {
         setState(!state);
-    };
+    }
+
     return [state, toggle];
 }
 
