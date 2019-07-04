@@ -5,15 +5,17 @@ import CounterHooks from './CounterHooks';
 import Toggler from './Toggler';
 import SimpleFormHooks from './SimpleFormHooks';
 import SimpleFormCustomHook from './SimpleFormCustomHook';
+import Clicker from './Clicker';
 
 function App() {
   return (
     <div className="App">
-      <CounterClass />
+      {/* <CounterClass />
       <CounterHooks />
       <Toggler />
       <SimpleFormHooks />
-      <SimpleFormCustomHook />
+      <SimpleFormCustomHook /> */}
+      <Clicker />
     </div>
   );
 }
