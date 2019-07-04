@@ -6,6 +6,7 @@ import Toggler from './Toggler';
 import SimpleFormHooks from './SimpleFormHooks';
 import SimpleFormCustomHook from './SimpleFormCustomHook';
 import Clicker from './Clicker';
+import SWMovies from './SWMovies';
 
 function App() {
   return (
@@ -15,7 +16,8 @@ function App() {
       <Toggler />
       <SimpleFormHooks />
       <SimpleFormCustomHook /> */}
-      <Clicker />
+      {/* <Clicker /> */}
+      <SWMovies />
     </div>
   );
 }
