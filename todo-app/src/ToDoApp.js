@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import uuid from 'uuid';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import ToDoList from './ToDoList';
+import ToDoForm from './ToDoForm';
 
 function ToDoApp() {
     const initialTodos = [
@@ -14,6 +16,10 @@ function ToDoApp() {
     ];
     const [todos, setTodos] = useState(initialTodos);
 
+    const addTodo = newTodoText => {
+        const id = uuid.v4();
+        setTodos([...todos, { id: id, task: newTodoText, completed: false }])
+    };
 
     return (
         <Paper style={{
@@ -29,7 +35,8 @@ function ToDoApp() {
                     <Typography color='inherit'>TODOS - WITH HOOKS!</Typography>
                 </Toolbar>
             </AppBar>
-            <ToDoList todos={todos}/>
+            <ToDoForm addTodo={addTodo} />
+            <ToDoList todos={todos} />
         </Paper>
     );
 }
