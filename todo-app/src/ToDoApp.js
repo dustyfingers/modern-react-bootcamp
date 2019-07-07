@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import uuid from 'uuid';
+import React, { useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import AppBar from '@material-ui/core/AppBar';
@@ -7,37 +6,15 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import ToDoList from './ToDoList';
 import ToDoForm from './ToDoForm';
+import useTodoState from './hooks/useTodoState';
 
 function ToDoApp() {
     const initialTodos = JSON.parse(window.localStorage.getItem('todos')) || [];
-    const [todos, setTodos] = useState(initialTodos);
+    const {todos, addTodo, removeTodo, toggleTodo, editTodo} = useTodoState(initialTodos);
 
     useEffect(() => {
         window.localStorage.setItem('todos', JSON.stringify(todos));
     }, [todos]);
-
-    const addTodo = newTodoText => {
-        setTodos([...todos, { id: uuid.v4(), task: newTodoText, completed: false }])
-    };
-
-    const removeTodo = todoId => {
-        // filter out removed todo
-        const updatedTodos = todos.filter(todo => todo.id !== todoId);
-        // call setTodos with new todos array
-        setTodos(updatedTodos);
-    };
-
-    const toggleTodo = todoId => {
-        // toggle the 'completed' property on the todo where the id matches the passed in id, otherwise just return the todo as is
-        const updatedTodos = todos.map(todo => todo.id === todoId ? { ...todo, completed: !todo.completed } : todo);
-        setTodos(updatedTodos);
-    };
-
-    const editTodo = (todoId, newTask) => {
-        // toggle the 'completed' property on the todo where the id matches the passed in id, otherwise just return the todo as is
-        const updatedTodos = todos.map(todo => todo.id === todoId ? { ...todo, task: newTask } : todo);
-        setTodos(updatedTodos);
-    };
 
     return (
         <Paper style={{
