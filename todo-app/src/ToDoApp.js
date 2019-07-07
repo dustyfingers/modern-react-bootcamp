@@ -17,8 +17,20 @@ function ToDoApp() {
     const [todos, setTodos] = useState(initialTodos);
 
     const addTodo = newTodoText => {
-        const id = uuid.v4();
-        setTodos([...todos, { id: id, task: newTodoText, completed: false }])
+        setTodos([...todos, { id: uuid.v4(), task: newTodoText, completed: false }])
+    };
+
+    const removeTodo = todoId => {
+        // filter out removed todo
+        const updatedTodos = todos.filter(todo => todo.id !== todoId);
+        // call setTodos with new todos array
+        setTodos(updatedTodos);
+    };
+
+    const toggleTodo = todoId => {
+        // toggle the 'completed' property on the todo where the id matches the passed in id, otherwise just return the todo as is
+        const updatedTodos = todos.map(todo => todo.id === todoId ? { ...todo, completed: !todo.completed } : todo);
+        setTodos(updatedTodos);
     };
 
     return (
@@ -35,8 +47,12 @@ function ToDoApp() {
                     <Typography color='inherit'>TODOS - WITH HOOKS!</Typography>
                 </Toolbar>
             </AppBar>
-            <ToDoForm addTodo={addTodo} />
-            <ToDoList todos={todos} />
+            <Grid container justify='center' style={{ marginTop: '1rem' }} >
+                <Grid item xs={11} md={8} lg={6}>
+                    <ToDoForm addTodo={addTodo} />
+                    <ToDoList todos={todos} removeTodo={removeTodo} toggleTodo={toggleTodo} />
+                </Grid>
+            </Grid>
         </Paper>
     );
 }
