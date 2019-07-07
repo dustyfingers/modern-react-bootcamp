@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import uuid from 'uuid';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
@@ -9,12 +9,12 @@ import ToDoList from './ToDoList';
 import ToDoForm from './ToDoForm';
 
 function ToDoApp() {
-    const initialTodos = [
-        { id: 1, task: 'Bathe dogs', completed: false },
-        { id: 2, task: 'Powerwash driveway', completed: true },
-        { id: 3, task: 'Create a react portfolio', completed: true }
-    ];
+    const initialTodos = JSON.parse(window.localStorage.getItem('todos')) || [];
     const [todos, setTodos] = useState(initialTodos);
+
+    useEffect(() => {
+        window.localStorage.setItem('todos', JSON.stringify(todos));
+    }, [todos]);
 
     const addTodo = newTodoText => {
         setTodos([...todos, { id: uuid.v4(), task: newTodoText, completed: false }])
