@@ -33,6 +33,12 @@ function ToDoApp() {
         setTodos(updatedTodos);
     };
 
+    const editTodo = (todoId, newTask) => {
+        // toggle the 'completed' property on the todo where the id matches the passed in id, otherwise just return the todo as is
+        const updatedTodos = todos.map(todo => todo.id === todoId ? { ...todo, task: newTask } : todo);
+        setTodos(updatedTodos);
+    };
+
     return (
         <Paper style={{
             padding: 0,
@@ -50,7 +56,11 @@ function ToDoApp() {
             <Grid container justify='center' style={{ marginTop: '1rem' }} >
                 <Grid item xs={11} md={8} lg={6}>
                     <ToDoForm addTodo={addTodo} />
-                    <ToDoList todos={todos} removeTodo={removeTodo} toggleTodo={toggleTodo} />
+                    <ToDoList
+                        todos={todos}
+                        removeTodo={removeTodo}
+                        toggleTodo={toggleTodo}
+                        editTodo={editTodo} />
                 </Grid>
             </Grid>
         </Paper>
